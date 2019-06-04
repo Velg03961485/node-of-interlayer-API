@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var classRouter = require('./routes/class');
+var getDataRouter = require('./routes/getData');
 
 var app = express();
 
@@ -23,6 +24,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/class', classRouter);
+app.use('/getData',getDataRouter);
+
+var path = require('path');
+
+global.__base = __dirname + path.sep
+
+// 全局函数
+global.global_url = require('./conf/global_url.js')
 
 // 添加的函数路径
 // require('./controllers/index.js')(app)

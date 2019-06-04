@@ -8,13 +8,16 @@ var async = require('async');
 
 var request = require('request');
 
+
+
 router.get('/getClassList',function(req, res, next){
     // var output=output();
+    //console.log(global.global_url.urlData.dataInfo)
     try{
         async.waterfall([function(callback){
             // 第一个请求函数
             request({
-                url:'http://crm.ibetwo.com:8030/common/getStrore',
+                url:global.global_url.urlData.storeList,
                 method:'POST',
             },function(error, response, body){
                 var _data = JSON.parse(body)
@@ -43,7 +46,7 @@ router.get('/getClassList',function(req, res, next){
         },function(data1,callback){
             console.log(data1);
             request({
-                url:'http://crm.ibetwo.com:8030/campaign/getById',
+                url:global.global_url.urlData.dataInfo,
                 method:'POST',
                 data:{
                     id:1
