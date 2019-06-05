@@ -12,7 +12,7 @@ var request = require('request');
 
 router.get('/getClassList',function(req, res, next){
     // var output=output();
-    //console.log(global.global_url.urlData.dataInfo)
+    console.log(global.global_url.urlData.dataInfo)
     try{
         async.waterfall([function(callback){
             // 第一个请求函数
@@ -20,8 +20,9 @@ router.get('/getClassList',function(req, res, next){
                 url:global.global_url.urlData.storeList,
                 method:'POST',
             },function(error, response, body){
-                var _data = JSON.parse(body)
+                
                 if (!error && response.statusCode == 200) {
+                    var _data = JSON.parse(body)
                     //输出返回的内容
                     console.log(body);
                     
@@ -54,10 +55,10 @@ router.get('/getClassList',function(req, res, next){
             },function(error, response, body){
                //输出返回的内容
                console.log(body);
-               var _data = JSON.parse(body);
+               
                var results={};
                 if (!error && response.statusCode == 200) {
-                    
+                    var _data = JSON.parse(body);
                     console.log(_data.data)
                     // res.json({
                     //     status:100,
@@ -71,9 +72,7 @@ router.get('/getClassList',function(req, res, next){
                     callback(null,results);
 
                 }else{
-                    if(_data.data === null){
-                        console.log('请求错误')
-                    }
+                
                     results.storeData=data1;
                     results.next1='';
 
