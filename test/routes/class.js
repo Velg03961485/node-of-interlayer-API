@@ -8,6 +8,8 @@ var async = require('async');
 
 var request = require('request');
 
+var res_format = require('../controllers/respone_format');
+
 
 
 router.get('/getClassList',function(req, res, next){
@@ -90,11 +92,19 @@ router.get('/getClassList',function(req, res, next){
             console.log(results);
             // output.success.data=results;
             // res.json(output.success)
-            res.json({
-                status:200,
-                msg:'',
-                data:results
-            })
+            // res.json({
+            //     status:200,
+            //     msg:'',
+            //     data:results
+            // })
+
+            let _result = res_format.response_format({
+                cmd: "getData/index",
+                msg: "success",
+                result:results
+            });
+
+            res.json(_result);
         })
 
     }catch(e){
@@ -110,3 +120,10 @@ router.get('/getClassList',function(req, res, next){
 })
 
 module.exports = router;
+
+
+// module.exports = function (app) {
+//     app.get('/getInfo/index',function () {
+//
+//     })
+// }
