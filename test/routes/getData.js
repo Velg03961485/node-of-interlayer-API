@@ -33,7 +33,7 @@ router.post('/index',function(req,res){
         if (!_body.name) {
             let _result = res_format.response_without_request({
                 cmd: "getData/index",
-                msg: "name is null",
+                msg: "name is null", 
             });
 
             res.json(_result);
@@ -49,6 +49,11 @@ router.post('/index',function(req,res){
             return;
         }
 
+        var re = /^[1-6]{1}$/;
+        if(!re.test(_body.id)){
+            throw "id err"; ;    //throw可以把报错信息抛到catch中
+        }
+
 
         let _result = res_format.response_format({
             cmd: "getData/index",
@@ -61,11 +66,18 @@ router.post('/index',function(req,res){
 
         res.json(_result);
 
-
+        
     }catch(e){
-        res.json({
+        console.log(e)
+        let _result = res_format.response_error_system({
+            cmd: "getData/index",
+            msg: e,
+            result:{
 
-        })
+            }
+        });
+
+        res.json(_result);
     }
     
 
