@@ -79,6 +79,18 @@ app.use('/class', classRouter);
 3.在js文件中写接口逻辑
 
 
+## 添加功能备注
+
+
+1.respone_format 添加系统报错机制
+
+
+2.在参数验证中，使用throw 抛出错误在catch中
+
+
+3.参数校验封装，提炼出来共有校验类
+
+
 
 
 

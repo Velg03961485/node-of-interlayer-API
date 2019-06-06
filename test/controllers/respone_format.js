@@ -111,4 +111,15 @@ exports.response_user_none = function (params = {}) {
         result: params.result || {},
         code: 10301,//统一code
     };
+};
+
+
+// 未知性系统错误
+exports.response_error_system = function(params){
+    return {
+        cmd: params.cmd || "",
+        msg: params.msg || "系统错误！",
+        result: params.result || {},
+        code:10401,  //统一code
+    }
 }
